@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+
+    <link rel="stylesheet" href="../styles/delivery_register.css">
+    
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script src="../scripts/delivery_register.mjs" type="module" defer></script>
+    
+    <title>Сервис+Доставка Регистрация</title>
+</head>
+<body>
+    <div class="container">
+        <div id="loading-container" class="loading-container">Загрузка...</div>
+        <div id="registration-form" class="registration-form">
+            <button id="customer-button" class="register-form-button">Я — заказчик 🤵‍♂️</button>
+            <button id="courier-button" class="register-form-button">Я — курьер 🚚</button>
+
+            <label for="name-input" id="name-label" class="register-form-label">Введите ФИО 📜</label>
+            <input type="text" id="name-input" class="register-form-input">
+
+            <label for="date-of-birth-input" id="date-of-birth-label" class="register-form-label">Выберите дату рождения 📅</label>
+            <input type="date" id="date-of-birth-input" class="register-form-input">
+
+            <label for="has-car-container" id="has-car-label" class="register-form-label">Есть ли у Вас автомобиль?</label>
+            <div id="has-car-container" class="has-car-container">
+                <label for="has-car-input-true">Да</label>
+                <input type="radio" id="has-car-input-true" class="register-form-input" name="has-car" value="true">
+                <label for="has-car-input-false">Нет</label>
+                <input type="radio" id="has-car-input-false" class="register-form-input" name="has-car" value="false">
+            </div>
+
+            <label for="car-model-input" id="car-model-label" class="register-form-label">Введите марку автомобиля</label>
+            <input type="text" id="car-model-input" class="register-form-input">
+
+            <label for="car-input" id="car-label" class="register-form-label">Введите габариты автомобиля (в метрах)</label>
+            <div id="car-container" class="car-container">
+                <label for="car-width-input">Ширина:</label>
+                <input type="number" id="car-width-input" class="register-form-input">
+                <label for="car-length-input">Длина:</label>
+                <input type="number" id="car-length-input" class="register-form-input">
+                <label for="car-height-input">Высота:</label>
+                <input type="number" id="car-height-input" class="register-form-input">
+            </div>
+
+            <div id="photo-container" class="photo-container">
+                <label id="photo-label" for="photo-button" class="register-form-label">Загрузите свою фотографию. На фотографии должно быть видно Ваше лицо.</label>
+                <input type="file" id="photo-input" accept="image/*" style="display: none">
+                <button id="photo-button" class="register-form-button">Загрузить фото 📷</button>
+            </div>
+
+            <button id="register-button" class="register-form-button">Зарегистрироваться ✅</button>
+        </div>
+
+        <div id="registration-modal" class="modal">
+            <div class="modal-content">
+                <p id="modal-message" class="modal-message-text"></p>
+                <button id="modal-button" class="register-form-button">OK</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

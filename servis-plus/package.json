@@ -1,0 +1,23 @@
+{
+  "name": "freelance-platform-webapp",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A [TG WebApp]() bot for customers to post bids and performers to respond.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^11.6.0",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.3.2",
+    "ws": "^8.18.0"
+  }
+}

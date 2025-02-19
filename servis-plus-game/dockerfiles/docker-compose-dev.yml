@@ -1,0 +1,39 @@
+services:
+  nginx:
+    image: nginx:1.24.0
+    ports:
+      - "81:80"
+      - "8443:443"
+    volumes:
+      - ../configs/default-dev.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - ../frontend/dist:/app/frontend/dist
+    depends_on:
+      - bot
+      - nodejs
+
+  bot:
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile.bot
+    restart: always
+    environment:
+      - PYTHONPATH=/app
+
+  nodejs:
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile.nodejs
+    restart: always
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
