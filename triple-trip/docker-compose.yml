@@ -1,0 +1,32 @@
+services:
+  rabbitmq:
+    image: rabbitmq:4.0.4
+    ports:
+      - "5672:5672"
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile.bot
+    restart: always
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./db.sqlite:/app/db.sqlite
+
+  queues:
+    build:
+      context: .
+      dockerfile: Dockerfile.queues
+    restart: always
+    depends_on:
+      - rabbitmq
+      - bot
+    volumes:
+      - ./db.sqlite:/app/db.sqlite
